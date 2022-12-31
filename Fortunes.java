@@ -54,8 +54,6 @@ public class Fortunes {
 
             names.addAll(Arrays.stream(namesInputArr).toList());
             names.removeAll(Arrays.asList("", null)); //trim empty strings
-            System.out.println(names);
-
 
             if (!names.isEmpty()) {
                 displayResults(namesLabel, namesInput, submitBtn, names, frame);
@@ -96,17 +94,17 @@ public class Fortunes {
 
         //Get a random fortune for each person
         Random random = new Random();
-        StringBuilder assignedFortunes = new StringBuilder();
+        StringBuilder resultsMessage = new StringBuilder();
         for (String name : names) {
             int randomFortuneIndex = random.nextInt(0, fortunesBulgarian.size());
             String fortune = fortunesBulgarian.get(randomFortuneIndex);
             //remove it from the list to avoid people getting the same fortune
             fortunesBulgarian.remove(randomFortuneIndex);
-            assignedFortunes.append(String.format("<h3>На %s се падна:</h3> <p>%s</p><hr>", name, fortune));
+            resultsMessage.append(String.format("<h3>На %s се падна:</h3> <p>%s</p><hr>", name, fortune));
         }
 
         JLabel resultsOutput = new JLabel("<html>"
-                + assignedFortunes
+                + resultsMessage
                 + "</html>");
 
         resultsOutput.setBounds(50, 0, 300, 700);
